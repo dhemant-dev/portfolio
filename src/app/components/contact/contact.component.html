@@ -29,26 +29,29 @@
       </div>
     </div>
 
-    <form class="contact-form">
+    <form class="contact-form" (ngSubmit)="onSubmit()" #f="ngForm">
       <div class="form-group">
-        <input type="text" placeholder="Your Name" required>
+        <input type="text" name="name" [(ngModel)]="contactData.name" placeholder="Your Name" required>
       </div>
       <div class="form-group">
-        <input type="email" placeholder="Your Email" required>
+        <input type="email" name="email" [(ngModel)]="contactData.email" placeholder="Your Email" required>
       </div>
       <div class="form-group">
-        <select class="form-select" required>
+        <select class="form-select" name="inquiryType" [(ngModel)]="contactData.inquiryType" required>
           <option value="" disabled selected>Nature of Inquiry</option>
-          <option value="project">Project Proposal</option>
-          <option value="resume">Resume Request</option>
-          <option value="collaboration">Collaboration</option>
-          <option value="other">Other</option>
+          <option value="Project Proposal">Project Proposal</option>
+          <option value="Resume Request">Resume Request</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Other">Other</option>
         </select>
       </div>
       <div class="form-group">
-        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <input type="text" name="subject" [(ngModel)]="contactData.subject" placeholder="Subject">
       </div>
-      <button type="submit" class="btn btn-primary w-full">Send Message</button>
+      <div class="form-group">
+        <textarea name="message" [(ngModel)]="contactData.message" placeholder="Your Message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary w-full" [disabled]="!f.valid">Send Message</button>
     </form>
   </div>
 </section>
